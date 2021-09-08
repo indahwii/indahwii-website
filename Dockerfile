@@ -4,7 +4,7 @@ RUN npm i -g serve
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN npm run generate
+RUN nuxt build
 FROM nginx
 COPY --from=build-stage /usr/src/app/dist/ /usr/share/nginx/html
 COPY --from=build-stage /nginx.conf /etc/nginx/conf.d/default.conf
